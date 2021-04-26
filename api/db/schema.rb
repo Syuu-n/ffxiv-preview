@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_26_045511) do
+ActiveRecord::Schema.define(version: 2021_04_26_073144) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 2021_04_26_045511) do
     t.string "lodestone_id"
     t.integer "level"
     t.integer "item_level"
+    t.string "jobs"
+    t.string "jobs_en"
     t.string "patch"
     t.boolean "is_untradable"
     t.integer "item_id"
@@ -35,6 +37,8 @@ ActiveRecord::Schema.define(version: 2021_04_26_045511) do
     t.string "name_en"
     t.integer "level"
     t.integer "item_level"
+    t.string "jobs"
+    t.string "jobs_en"
     t.string "patch"
     t.boolean "is_untradable"
     t.bigint "category_id"
