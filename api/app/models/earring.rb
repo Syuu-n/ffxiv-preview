@@ -1,3 +1,8 @@
 class Earring < ApplicationRecord
-  belongs_to :item
+
+  def item
+    if item_id
+      Item.find_by(id: item_id)
+    end
+  end
 end

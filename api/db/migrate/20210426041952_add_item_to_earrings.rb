@@ -1,5 +1,5 @@
 class AddItemToEarrings < ActiveRecord::Migration[6.0]
   def change
-    add_reference :earrings, :item, index: true
+    add_column :earrings, :item_id, :integer
   end
 end
