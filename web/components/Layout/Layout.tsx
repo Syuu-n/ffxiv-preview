@@ -4,11 +4,6 @@ import {
   SITE_FULL_NAME, SITE_NAME, SITE_DOMAIN, SITE_DESCRIPTION,
 } from '../../lib/config/config'
 import { Layout as AntLayout, Menu } from "antd"
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons"
 
 export default function Layout (props: {
   children: React.ReactNode
@@ -70,14 +65,19 @@ export default function Layout (props: {
         >
           <div className={styles.logo} />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item key="1" icon={<UserOutlined />}>
-              nav 1
+            <Menu.Item
+              key="home"
+              icon={<img src="/ffxiv-preview-image/icons/home_icon.png" />}
+              className={styles.menuIcon}
+            >
+              ホーム
             </Menu.Item>
-            <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-              nav 2
-            </Menu.Item>
-            <Menu.Item key="3" icon={<UploadOutlined />}>
-              nav 3
+            <Menu.Item
+              key="earrings"
+              icon={<img src="/ffxiv-preview-image/icons/earring_icon.png" />}
+              className={styles.menuIcon}
+            >
+              耳飾り
             </Menu.Item>
           </Menu>
         </Sider>
