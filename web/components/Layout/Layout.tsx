@@ -1,9 +1,14 @@
 import Head from "next/head"
-import Link from 'next/link'
-// import { layoutStyle } from './layoutStyle'
+import styles from '../../styles/compoments/layout.module.scss'
 import {
   SITE_FULL_NAME, SITE_NAME, SITE_DOMAIN, SITE_DESCRIPTION,
 } from '../../lib/config/config'
+import { Layout as AntLayout, Menu } from "antd"
+import {
+  UploadOutlined,
+  UserOutlined,
+  VideoCameraOutlined,
+} from "@ant-design/icons"
 
 export default function Layout (props: {
   children: React.ReactNode
@@ -14,10 +19,10 @@ export default function Layout (props: {
   ogImageUrl?: string
 }) {
   const { children, title, description, noindex, pageUrl, ogImageUrl } = props
-  // const styles = layoutStyle()
+  const { Header, Sider, Content, Footer } = AntLayout
 
   return (
-    <div>
+    <>
       <Head>
         <title>{title ? `${title} | ${SITE_FULL_NAME}` : SITE_FULL_NAME}</title>
         <meta name="description" content={description ? description : SITE_DESCRIPTION} />
@@ -56,20 +61,43 @@ export default function Layout (props: {
           </>
         )}
       </Head>
-      {/* ---header--- */}
-      {/* ---main--- */}
-      <main>
-        {children}
-      </main>
-      {/* ---footer--- */}
-      <footer>
-        {/* Copy Rights */}
-        <div>
-          記載されている会社名・製品名・システム名などは、各社の商標、または登録商標です。
-          (C) SQUARE ENIX CO., LTD. All Rights Reserved. / 
-          &copy; 2021 {SITE_FULL_NAME}
-        </div>
-      </footer>
-    </div>
+      <AntLayout className={styles.mainPage}>
+        {/* ---sider--- */}
+        <Sider
+          breakpoint="lg"
+          collapsedWidth="0"
+        >
+          <div className={styles.logo} />
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+            <Menu.Item key="1" icon={<UserOutlined />}>
+              nav 1
+            </Menu.Item>
+            <Menu.Item key="2" icon={<VideoCameraOutlined />}>
+              nav 2
+            </Menu.Item>
+            <Menu.Item key="3" icon={<UploadOutlined />}>
+              nav 3
+            </Menu.Item>
+          </Menu>
+        </Sider>
+        <AntLayout>
+          {/* ---header--- */}
+          <Header className={styles.siteLayoutSubHeaderBackground} style={{ padding: 0 }} />
+          {/* ---main--- */}
+          <Content
+            className={styles.siteLayoutBackground}
+            style={{ margin: '24px 16px 0' }}
+          >
+            {children}
+          </Content>
+          {/* ---footer--- */}
+          <Footer className={styles.footer}>
+            記載されている会社名・製品名・システム名などは、各社の商標、または登録商標です。
+            (C) SQUARE ENIX CO., LTD. All Rights Reserved. / 
+            &copy; 2021 {SITE_FULL_NAME}
+          </Footer>
+        </AntLayout>
+      </AntLayout>
+    </>
   )
 }
