@@ -1,0 +1,35 @@
+@import '../variables.scss';
+
+.sider {
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  z-index: 100;
+}
+
+.contentWrapper {
+  min-height: 100vh;
+  margin-left: 200px;
+  @include mq(lg) {
+    margin-left: 0;
+  }
+}
+
+.logo {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.siteLayoutSubHeaderBackground {
+  background: #fff;
+}
+
+.content {
+  margin: 24px 16px 0;
+}
+
+.footer {
+  text-align: center;
+  font-size: 12px;
+}

@@ -1,5 +1,5 @@
 import Head from "next/head"
-import styles from '../../styles/compoments/layout.module.scss'
+import styles from '../../styles/components/layout.module.scss'
 import {
   SITE_FULL_NAME, SITE_NAME, SITE_DOMAIN, SITE_DESCRIPTION,
 } from '../../lib/config/config'
@@ -66,6 +66,7 @@ export default function Layout (props: {
         <Sider
           breakpoint="lg"
           collapsedWidth="0"
+          className={styles.sider}
         >
           <div className={styles.logo} />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
@@ -80,14 +81,11 @@ export default function Layout (props: {
             </Menu.Item>
           </Menu>
         </Sider>
-        <AntLayout>
+        <AntLayout className={styles.contentWrapper}>
           {/* ---header--- */}
           <Header className={styles.siteLayoutSubHeaderBackground} style={{ padding: 0 }} />
           {/* ---main--- */}
-          <Content
-            className={styles.siteLayoutBackground}
-            style={{ margin: '24px 16px 0' }}
-          >
+          <Content className={styles.content}>
             {children}
           </Content>
           {/* ---footer--- */}
