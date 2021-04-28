@@ -64,7 +64,7 @@ export default function Layout (props: {
           className={styles.sider}
         >
           <div className={styles.logo} />
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={['home']}>
             <Menu.Item
               key="home"
               icon={<img src="/ffxiv-preview-image/icons/home_icon.png" />}
