@@ -1,13 +1,17 @@
 import ItemCard from '../../components/ItemCard/itemCard'
 import styles from '../../styles/components/itemCardList.module.scss'
 
-export default function ItemCardList() {
-  const items = [...Array(10)].map(() => <ItemCard/>)
+interface Props {
+  items: any
+}
+
+export default function ItemCardList(props: Props) {
+  const { items } = props
 
   return(
     <div className={styles.itemsContainer}>
-      { items.map((item, i) =>
-        item
+      { items.map((item) =>
+        <ItemCard item={item} key={item.id} />
       )}
     </div>
   )
