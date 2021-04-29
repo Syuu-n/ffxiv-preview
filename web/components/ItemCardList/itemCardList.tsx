@@ -1,8 +1,9 @@
 import ItemCard from '../../components/ItemCard/itemCard'
+import { Item } from '../../lib/requests/requestStructs'
 import styles from '../../styles/components/itemCardList.module.scss'
 
 interface Props {
-  items: any
+  items: Item[]
 }
 
 export default function ItemCardList(props: Props) {

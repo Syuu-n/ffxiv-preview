@@ -1,8 +1,9 @@
 import { Card } from 'antd'
+import { Item } from '../../lib/requests/requestStructs'
 import styles from '../../styles/components/itemCard.module.scss'
 
 interface Props {
-  item: any
+  item: Item
 }
 
 export default function ItemCard(props: Props) {
