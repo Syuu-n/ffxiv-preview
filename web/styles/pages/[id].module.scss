@@ -1,6 +1,122 @@
+@import '../variables.scss';
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  h1 {
+    margin: 0;
+  }
+  span {
+    margin-left: 16px;
+  }
+}
+
+.contentWrapper {
+  display: flex;
+  @include mq(xl) {
+    display: block;
+  }
+}
+
 .imageContainer {
-  max-width: 400px;
+  max-width: 600px;
   width: 100%;
+}
+
+.infoCardContainer {
+  margin-top: 24px;
+}
+
+.infoCardInner {
+  display: flex;
+  align-items: center;
+}
+
+.iconContainer {
+  position: relative;
+  height: 152px;
+  width: 152px;
+  @include mq(sm) {
+    height: 80px;
+    width: 80px;
+  }
+}
+
+.icon {
+  position: absolute;
+  top: 6px;
+  left: 12px;
+  @include mq(sm) {
+    height: 68px;
+    width: 68px;
+    top: 3px;
+    left: 6px;
+  }
+}
+
+.iconCover {
+  // background: url('/ffxiv-preview-image/common/icon_cover.png') no-repeat;
+  height: 152px;
+  width: 152px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  @include mq(sm) {
+    height: 80px;
+    width: 80px;
+  }
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 0 24px;
+}
+
+.baseInfoContainer {
+  display: flex;
+  flex-direction: column;
+  :first-child {
+    margin-bottom: 10px;
+  }
+  :last-child {
+    margin-bottom: 10px;
+  }
+}
+
+.howToGetContainer {
+  margin-top: 24px;
+}
+
+.howToGetTitleContainer {
+  display: flex;
+  margin-bottom: 16px;
+  span {
+    font-size: 20px;
+    margin-right: 8px;
+    color: #8a7eff;
+  }
+  h3 {
+    margin: 0;
+  }
+}
+
+.sourceText {
+  margin-left: 30px;
+}
+
+.sider {
+  margin: 0 0 0 24px;
+  @include mq(xl) {
+    margin: 24px 0 0 0;
+  }
+}
+
+.adDummy {
+  width: 300px;
+  height: 600px;
+  background: #999999;
 }
 
 .nextArrowWrap {

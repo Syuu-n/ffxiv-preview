@@ -3,10 +3,16 @@ import styles from '../../styles/components/layout.module.scss'
 import {
   SITE_FULL_NAME, SITE_NAME, SITE_DOMAIN, SITE_DESCRIPTION,
 } from '../../lib/config/config'
-import { Layout as AntLayout, Menu } from "antd"
+import { Layout as AntLayout, Menu, Breadcrumb } from "antd"
+import { HomeOutlined } from '@ant-design/icons'
 import { useRouter } from 'next/router'
 
 type MenuList = "home" | "earrings"
+
+interface BreadcrumbItem {
+  key: string | number
+  name: string
+}
 
 export default function Layout (props: {
   children: React.ReactNode
@@ -16,8 +22,9 @@ export default function Layout (props: {
   pageUrl?: string
   ogImageUrl?: string
   menuSelected?: MenuList
+  breadcrumbs?: BreadcrumbItem[]
 }) {
-  const { children, title, description, noindex, pageUrl, ogImageUrl, menuSelected } = props
+  const { children, title, description, noindex, pageUrl, ogImageUrl, menuSelected, breadcrumbs } = props
   const { Header, Sider, Content, Footer } = AntLayout
   const router = useRouter()
 
@@ -91,6 +98,24 @@ export default function Layout (props: {
         <AntLayout className={styles.contentWrapper}>
           {/* ---header--- */}
           <Header className={styles.siteLayoutSubHeaderBackground} style={{ padding: 0 }} />
+          {/* パンくずリスト */}
+          <Breadcrumb className={styles.breadcrumb}>
+            { breadcrumbs ? (
+              breadcrumbs.map((breadcrumb) =>
+                <Breadcrumb.Item href={`/${breadcrumb.key}`} key={breadcrumb.key}>
+                  { breadcrumb.key === "" && (
+                    <HomeOutlined />
+                  )}
+                  <span>{breadcrumb.name}</span>
+                </Breadcrumb.Item>
+              )
+            ) : (
+              <Breadcrumb.Item href="">
+                <HomeOutlined />
+                <span>ホーム</span>
+              </Breadcrumb.Item>
+            )}
+          </Breadcrumb>
           {/* ---main--- */}
           <Content className={styles.content}>
             {children}

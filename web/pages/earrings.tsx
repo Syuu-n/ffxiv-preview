@@ -12,7 +12,13 @@ export default function Earrings(props: Props) {
   const { items } = props
 
   return (
-    <Layout menuSelected="earrings">
+    <Layout
+      menuSelected="earrings"
+      breadcrumbs={[
+        { key: "", name: "ホーム" },
+        { key: "earrings", name: "耳飾り"},
+      ]}
+    >
       <ItemCardList items={items}/>
     </Layout>
   )
