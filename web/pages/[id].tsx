@@ -39,7 +39,10 @@ export default function ItemPage(props: Props) {
   }
 
   return (
-    <Layout menuSelected="earrings">
+    <Layout
+      title={ssrItem.name}
+      menuSelected="earrings"
+    >
       <Title level={1}>{ssrItem.name}</Title>
       <div className={styles.imageContainer}>
         <Carousel arrows {...settings}>
