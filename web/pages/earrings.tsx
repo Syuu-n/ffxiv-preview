@@ -12,7 +12,7 @@ export default function Earrings(props: Props) {
   const { items } = props
 
   return (
-    <Layout>
+    <Layout menuSelected="earrings">
       <ItemCardList items={items}/>
     </Layout>
   )

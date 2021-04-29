@@ -12,7 +12,7 @@ interface Props {
 
 export default function ItemPage(props: Props) {
   const { ssrItem } = props
-  const { Title} = Typography
+  const { Title } = Typography
 
   // カルーセルの左右矢印
   const NextArrow = props => {
@@ -39,7 +39,7 @@ export default function ItemPage(props: Props) {
   }
 
   return (
-    <Layout>
+    <Layout menuSelected="earrings">
       <Title level={1}>{ssrItem.name}</Title>
       <div className={styles.imageContainer}>
         <Carousel arrows {...settings}>

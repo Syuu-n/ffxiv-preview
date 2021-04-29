@@ -4,6 +4,9 @@ import {
   SITE_FULL_NAME, SITE_NAME, SITE_DOMAIN, SITE_DESCRIPTION,
 } from '../../lib/config/config'
 import { Layout as AntLayout, Menu } from "antd"
+import { useRouter } from 'next/router'
+
+type MenuList = "home" | "earrings"
 
 export default function Layout (props: {
   children: React.ReactNode
@@ -12,9 +15,11 @@ export default function Layout (props: {
   noindex?: boolean
   pageUrl?: string
   ogImageUrl?: string
+  menuSelected?: MenuList
 }) {
-  const { children, title, description, noindex, pageUrl, ogImageUrl } = props
+  const { children, title, description, noindex, pageUrl, ogImageUrl, menuSelected } = props
   const { Header, Sider, Content, Footer } = AntLayout
+  const router = useRouter()
 
   return (
     <>
@@ -64,11 +69,12 @@ export default function Layout (props: {
           className={styles.sider}
         >
           <div className={styles.logo} />
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['home']}>
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={[menuSelected ? menuSelected : "home"]}>
             <Menu.Item
               key="home"
               icon={<img src="/ffxiv-preview-image/icons/home_icon.png" />}
               className={styles.menuIcon}
+              onClick={() => router.push("/")}
             >
               ホーム
             </Menu.Item>
@@ -76,6 +82,7 @@ export default function Layout (props: {
               key="earrings"
               icon={<img src="/ffxiv-preview-image/icons/earring_icon.png" />}
               className={styles.menuIcon}
+              onClick={() => router.push("/earrings")}
             >
               耳飾り
             </Menu.Item>
