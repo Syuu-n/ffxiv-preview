@@ -16,7 +16,7 @@ export default function ItemCard(props: Props) {
         <Card
           hoverable
           cover={
-            <img alt="item-img" src={`/ffxiv-preview-image/${item.id}/1_scale.png`} />
+            <img alt="item-img" src={`/ffxiv-preview-image/${item.id}/thumbnail.png`} />
           }
           className={styles.card}
         >

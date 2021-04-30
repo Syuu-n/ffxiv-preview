@@ -57,7 +57,7 @@ export default function ItemPage(props: Props) {
           {/* image */}
           <Card>
             <Carousel arrows {...settings} className={styles.imageCarousel}>
-              <Image src={`/ffxiv-preview-image/${ssrItem.id}/1_scale.png`} />
+              <Image src={`/ffxiv-preview-image/${ssrItem.id}/scale.png`} />
               <Image src={`/ffxiv-preview-image/${ssrItem.id}/1.png`} />
               <Image src={`/ffxiv-preview-image/${ssrItem.id}/2.png`} />
               <Image src={`/ffxiv-preview-image/${ssrItem.id}/3.png`} />
