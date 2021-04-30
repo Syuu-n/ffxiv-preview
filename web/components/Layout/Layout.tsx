@@ -6,6 +6,7 @@ import {
 import { Layout as AntLayout, Menu, Breadcrumb, Divider } from "antd"
 import { HomeOutlined } from '@ant-design/icons'
 import { useRouter } from 'next/router'
+import CustomHeader from '../../components/Header/header'
 
 type MenuList = "home" | "earrings"
 
@@ -97,7 +98,9 @@ export default function Layout (props: {
         </Sider>
         <AntLayout className={styles.contentWrapper}>
           {/* ---header--- */}
-          <Header className={styles.siteLayoutSubHeaderBackground} style={{ padding: 0 }} />
+          <Header className={styles.siteLayoutSubHeader} style={{ padding: 0 }}>
+            <CustomHeader />
+          </Header>
           {/* パンくずリスト */}
           <div className={styles.breadcrumb}>
             <Breadcrumb>

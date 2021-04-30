@@ -28,8 +28,13 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
-.siteLayoutSubHeaderBackground {
+.siteLayoutSubHeader {
   background: #fff;
+  display: flex;
+  justify-content: flex-end;
+  @include mq(sm) {
+    justify-content: center;
+  }
 }
 
 .breadcrumb {
