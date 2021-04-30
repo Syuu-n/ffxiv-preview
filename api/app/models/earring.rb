@@ -1,5 +1,13 @@
 class Earring < ApplicationRecord
 
+  def models
+    if model
+      model.split(", ")
+    else
+      []
+    end
+  end
+
   def item
     if item_id
       Item.find_by(id: item_id)
@@ -28,6 +36,7 @@ class Earring < ApplicationRecord
           jobs_en: api_earring.class_job_category.name_en,
           patch: api_earring.game_patch.version,
           is_untradable: api_earring.is_untradable,
+          model: api_earring.model_main
         )
         db_earring.save!
       end

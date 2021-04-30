@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_26_073144) do
+ActiveRecord::Schema.define(version: 2021_04_30_090653) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2021_04_26_073144) do
     t.string "jobs_en"
     t.string "patch"
     t.boolean "is_untradable"
+    t.string "model"
+    t.boolean "available", default: true
     t.integer "item_id"
     t.text "icon"
   end
@@ -42,13 +44,13 @@ ActiveRecord::Schema.define(version: 2021_04_26_073144) do
     t.string "patch"
     t.boolean "is_untradable"
     t.bigint "category_id"
+    t.string "model"
     t.text "source"
     t.text "source_en"
     t.text "img_1"
     t.text "img_2"
     t.text "img_3"
     t.text "icon"
-    t.string "relation_ids"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_items_on_category_id"
