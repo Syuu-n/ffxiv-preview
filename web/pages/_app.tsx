@@ -13,7 +13,6 @@ export default function App({ Component, pageProps }: AppProps) {
   // ページ遷移時
   router.events?.on('routeChangeStart', () => {
     nprogress.start()
-    console.log("Move")
   })
   // ページ遷移完了
   router.events?.on('routeChangeComplete', () => {
