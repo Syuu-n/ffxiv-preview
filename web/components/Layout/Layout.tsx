@@ -3,7 +3,7 @@ import styles from '../../styles/components/layout.module.scss'
 import {
   SITE_FULL_NAME, SITE_NAME, SITE_DOMAIN, SITE_DESCRIPTION,
 } from '../../lib/config/config'
-import { Layout as AntLayout, Menu, Breadcrumb } from "antd"
+import { Layout as AntLayout, Menu, Breadcrumb, Divider } from "antd"
 import { HomeOutlined } from '@ant-design/icons'
 import { useRouter } from 'next/router'
 
@@ -99,23 +99,26 @@ export default function Layout (props: {
           {/* ---header--- */}
           <Header className={styles.siteLayoutSubHeaderBackground} style={{ padding: 0 }} />
           {/* パンくずリスト */}
-          <Breadcrumb className={styles.breadcrumb}>
-            { breadcrumbs ? (
-              breadcrumbs.map((breadcrumb) =>
-                <Breadcrumb.Item href={`/${breadcrumb.key}`} key={breadcrumb.key}>
-                  { breadcrumb.key === "" && (
-                    <HomeOutlined />
-                  )}
-                  <span>{breadcrumb.name}</span>
+          <div className={styles.breadcrumb}>
+            <Breadcrumb>
+              { breadcrumbs ? (
+                breadcrumbs.map((breadcrumb) =>
+                  <Breadcrumb.Item href={`/${breadcrumb.key}`} key={breadcrumb.key}>
+                    { breadcrumb.key === "" && (
+                      <HomeOutlined />
+                    )}
+                    <span>{breadcrumb.name}</span>
+                  </Breadcrumb.Item>
+                )
+              ) : (
+                <Breadcrumb.Item href="">
+                  <HomeOutlined />
+                  <span>ホーム</span>
                 </Breadcrumb.Item>
-              )
-            ) : (
-              <Breadcrumb.Item href="">
-                <HomeOutlined />
-                <span>ホーム</span>
-              </Breadcrumb.Item>
-            )}
-          </Breadcrumb>
+              )}
+            </Breadcrumb>
+            <Divider className={styles.breadcrumbDivider} />
+          </div>
           {/* ---main--- */}
           <Content className={styles.content}>
             {children}

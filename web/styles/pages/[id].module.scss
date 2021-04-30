@@ -1,15 +1,30 @@
 @import '../variables.scss';
 
+.titleContainerWrap {
+  position: relative;
+}
+
 .titleContainer {
   display: flex;
   align-items: center;
   margin-bottom: 24px;
   h1 {
     margin: 0;
+    position: relative;
   }
   span {
     margin-left: 16px;
   }
+}
+
+.titleDivider {
+  margin: 0;
+  height: 2px;
+  width: 100px;
+  background: $primary-color;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
 }
 
 .contentWrapper {
@@ -71,7 +86,6 @@
 }
 
 .iconCover {
-  // background: url('/ffxiv-preview-image/common/icon_cover.png') no-repeat;
   height: 152px;
   width: 152px;
   position: absolute;
@@ -110,7 +124,7 @@
   span {
     font-size: 20px;
     margin-right: 8px;
-    color: #8a7eff;
+    color: $primary-color;
   }
   h3 {
     margin: 0;

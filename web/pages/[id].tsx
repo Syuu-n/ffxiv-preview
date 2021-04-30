@@ -48,9 +48,12 @@ export default function ItemPage(props: Props) {
         { key: ssrItem.id, name: ssrItem.name }
       ]}
     >
-      <div className={styles.titleContainer}>
-        <Title level={1}>{ssrItem.name}</Title>
-        <Text type="secondary">{ssrItem.name_en}</Text>
+      <div className={styles.titleContainerWrap}>
+        <div className={styles.titleContainer}>
+          <Title level={1}>{ssrItem.name}</Title>
+          <Text type="secondary">{ssrItem.name_en}</Text>
+        </div>
+        <span className={styles.titleDivider}/>
       </div>
       <div className={styles.contentWrapper}>
         <div>
