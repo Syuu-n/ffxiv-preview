@@ -1,7 +1,7 @@
 import { Card } from 'antd'
 import { Item } from '../../lib/requests/requestStructs'
 import styles from '../../styles/components/itemCard.module.scss'
-import Link from 'next/link'
+import CustomLink from '../../components/CustomLink/customLink'
 
 interface Props {
   item: Item
@@ -11,7 +11,7 @@ export default function ItemCard(props: Props) {
   const { item } = props
 
   return(
-    <Link href={`/${item.id}`}>
+    <CustomLink href={`/${item.id}`}>
       <a>
         <Card
           hoverable
@@ -26,6 +26,6 @@ export default function ItemCard(props: Props) {
           />
         </Card>
       </a>
-    </Link>
+    </CustomLink>
   )
 }

@@ -55,8 +55,8 @@ export default function ItemPage(props: Props) {
       <div className={styles.contentWrapper}>
         <div>
           {/* image */}
-          <Card className={styles.imageContainer}>
-            <Carousel arrows {...settings}>
+          <Card>
+            <Carousel arrows {...settings} className={styles.imageCarousel}>
               <Image src={`/ffxiv-preview-image/${ssrItem.id}/1_scale.png`} />
               <Image src={`/ffxiv-preview-image/${ssrItem.id}/1.png`} />
               <Image src={`/ffxiv-preview-image/${ssrItem.id}/2.png`} />
