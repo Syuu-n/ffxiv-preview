@@ -13,6 +13,12 @@ interface Props {
 export default function ItemPage(props: Props) {
   const { ssrItem } = props
   const { Title, Text } = Typography
+  const patchColors = {
+    2: "pink",
+    3: "blue",
+    4: "red",
+    5: "purple"
+  }
 
   // カルーセルの左右矢印
   const NextArrow = props => {
@@ -67,7 +73,11 @@ export default function ItemPage(props: Props) {
             </Carousel>
           </Card>
           {/* info */}
-          <Badge.Ribbon text={`パッチ ${ssrItem.patch}`} placement="end">
+          <Badge.Ribbon
+            text={`パッチ ${ssrItem.patch}`}
+            placement="end"
+            color={patchColors[`${parseInt(ssrItem.patch)}`]}
+          >
             <Card className={styles.infoCardContainer}>
               {/* SP 用タイトル */}
               <Title level={2} className={styles.itemTitleSp}>{ssrItem.name}</Title>
