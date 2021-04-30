@@ -66,29 +66,35 @@ export default function ItemPage(props: Props) {
           {/* info */}
           <Badge.Ribbon text={`パッチ ${ssrItem.patch}`} placement="end">
             <Card className={styles.infoCardContainer}>
-                <div className={styles.infoCardInner}>
-                  <div className={styles.iconContainer}>
-                    <img src={`/ffxiv-preview-image/${ssrItem.id}/icon.png`} className={styles.icon}/>
-                    <img src={`/ffxiv-preview-image/common/icon_cover.png`} className={styles.iconCover} />
-                  </div>
-                  <div className={styles.infoContainer}>
-                    <Title level={2}>{ssrItem.name}</Title>
-                    <div className={styles.baseInfoContainer}>
-                      <Text keyboard>{`ITEM LEVEL ${ssrItem.item_level}`}</Text>
-                      <div>
-                        <Text>クラス：</Text>
-                        <Text type="success">{ssrItem.jobs}</Text>
-                      </div>
-                      <div>
-                        <Text>装備レベル：</Text>
-                        <Text type="success">{ssrItem.level}</Text>
-                        <Text>〜</Text>
-                      </div>
-                    </div>
-                    <Text type={ssrItem.is_untradable ? "danger" : "success"}>{`マーケット取引${ssrItem.is_untradable ? "不可" : "可"}`}</Text>
-                  </div>
+              {/* SP 用タイトル */}
+              <Title level={2} className={styles.itemTitleSp}>{ssrItem.name}</Title>
+              <div className={styles.infoCardInner}>
+                {/* アイコン */}
+                <div className={styles.iconContainer}>
+                  <img src={`/ffxiv-preview-image/${ssrItem.id}/icon.png`} className={styles.icon}/>
+                  <img src={`/ffxiv-preview-image/common/icon_cover.png`} className={styles.iconCover} />
                 </div>
-              </Card>
+                <div className={styles.infoContainer}>
+                  {/* アイテム名 */}
+                  <Title level={2} className={styles.itemTitle}>{ssrItem.name}</Title>
+                  {/* 基本情報 */}
+                  <div className={styles.baseInfoContainer}>
+                    <Text keyboard>{`ITEM LEVEL ${ssrItem.item_level}`}</Text>
+                    <div>
+                      <Text>クラス：</Text>
+                      <Text type="success">{ssrItem.jobs}</Text>
+                    </div>
+                    <div>
+                      <Text>装備レベル：</Text>
+                      <Text type="success">{ssrItem.level}</Text>
+                      <Text>〜</Text>
+                    </div>
+                  </div>
+                  {/* マーケット */}
+                  <Text type={ssrItem.is_untradable ? "danger" : "success"}>{`マーケット取引${ssrItem.is_untradable ? "不可" : "可"}`}</Text>
+                </div>
+              </div>
+            </Card>
           </Badge.Ribbon>
           <Card className={styles.howToGetContainer}>
             <div className={styles.howToGetTitleContainer}>

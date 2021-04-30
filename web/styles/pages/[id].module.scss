@@ -28,6 +28,21 @@
   margin-top: 24px;
 }
 
+.itemTitleSp {
+  margin: 10px 0;
+  display: none;
+  @include mq(sm) {
+    display: block;
+  }
+}
+
+.itemTitle {
+  display: block;
+  @include mq(sm) {
+    display: none;
+  }
+}
+
 .infoCardInner {
   display: flex;
   align-items: center;
