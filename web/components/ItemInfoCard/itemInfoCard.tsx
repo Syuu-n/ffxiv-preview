@@ -1,14 +1,16 @@
 import { Typography, Card, Badge } from 'antd'
 import { Item, ItemIndex } from '../../lib/requests/requestStructs'
 import styles from '../../styles/components/itemInfoCard.module.scss'
+import CustomLink from '../../components/CustomLink/customLink'
 
 interface Props {
   item: Item | ItemIndex
   compact?: boolean
+  isLink?: boolean
 }
 
 export default function ItemInfoCard(props: Props) {
-  const { item, compact } = props
+  const { item, compact, isLink } = props
   const { Title, Text } = Typography
   const patchColors = {
     2: "pink",
@@ -17,13 +19,13 @@ export default function ItemInfoCard(props: Props) {
     5: "purple"
   }
 
-  return (
+  const card =
     <Badge.Ribbon
       text={`パッチ ${item.patch}`}
       placement="end"
       color={patchColors[`${parseInt(item.patch)}`]}
     >
-      <Card>
+      <Card hoverable={isLink}>
         {/* SP 用タイトル */}
         { compact ? (
           <Title level={4} className={styles.itemTitleSpCompact}>{item.name}</Title>
@@ -90,5 +92,16 @@ export default function ItemInfoCard(props: Props) {
         </div>
       </Card>
     </Badge.Ribbon>
+
+  return (
+    <>
+      { isLink ? (
+        <CustomLink href={`/${item.id}`}>
+          <a>{card}</a>
+        </CustomLink>
+      ): (
+        card
+      )}
+    </>
   )
 }

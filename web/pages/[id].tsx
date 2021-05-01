@@ -108,14 +108,14 @@ export default function ItemPage(props: Props) {
                   [...Array(5)].map((_, i) =>
                     ssrItem.series[i] && (
                       <List.Item className={styles.listItem}>
-                        <ItemInfoCard item={ssrItem.series[i]} compact/>
+                        <ItemInfoCard item={ssrItem.series[i]} compact isLink/>
                       </List.Item>
                     )
                   )
                 ) : (
                   ssrItem.series.map((s_item) =>
                     <List.Item className={styles.listItem}>
-                      <ItemInfoCard item={s_item} compact/>
+                      <ItemInfoCard item={s_item} compact isLink/>
                     </List.Item>
                   )
                 )}
