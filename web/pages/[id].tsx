@@ -2,11 +2,12 @@ import { GetStaticPaths, GetStaticProps } from "next"
 import { SSR_BASE_URL } from '../lib/config/config'
 import { Item, ItemIndex } from '../lib/requests/requestStructs'
 import Layout from '../components/Layout/layout'
-import { Typography, Carousel, Image, Card, List, Button } from 'antd'
-import { LeftOutlined, RightOutlined, AppstoreFilled } from '@ant-design/icons'
+import { Typography, Carousel, Image, Card, List, Button, Switch, Tooltip } from 'antd'
+import { LeftOutlined, RightOutlined, AppstoreFilled, SnippetsOutlined } from '@ant-design/icons'
 import styles from '../styles/pages/[id].module.scss'
 import ItemInfoCard from '../components/ItemInfoCard/itemInfoCard'
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import ItemCardList from '../components/ItemCardList/itemCardList'
 
 interface Props {
   ssrItem: Item
@@ -16,6 +17,8 @@ export default function ItemPage(props: Props) {
   const { ssrItem } = props
   const { Title, Text } = Typography
   const [showAll, setShowAll] = useState(false)
+  const [variations, setVariations] = useState(ssrItem.variations)
+  const [isUniq, setIsUniq] = useState(false)
 
   const loadMore =
     !showAll ? (
@@ -50,6 +53,24 @@ export default function ItemPage(props: Props) {
     prevArrow: <PrevArrow />
   }
 
+  // 重複をまとめるフラグを localStorage へ保存
+  const switchIsUniq = (value: boolean) => {
+    const changedIsUniq = !value
+    localStorage.setItem("isUniq", changedIsUniq.toString())
+    setIsUniq(changedIsUniq)
+  }
+
+  useEffect(() => {
+    const localStorageIsUniq = localStorage.getItem("isUniq")
+    if (localStorageIsUniq === "true") {
+      setIsUniq(true)
+    }
+  }, [])
+
+  useEffect(() => {
+    setVariations(isUniq ? ssrItem.uniq_variations : ssrItem.variations)
+  }, [isUniq])
+
   return (
     <Layout
       title={ssrItem.name}
@@ -68,7 +89,7 @@ export default function ItemPage(props: Props) {
         <span className={styles.titleDivider}/>
       </div>
       <div className={styles.contentWrapper}>
-        <div>
+        <div className={styles.mainContainer}>
           {/* 画像 */}
           <Card>
             <Carousel arrows {...settings} className={styles.imageCarousel}>
@@ -90,10 +111,32 @@ export default function ItemPage(props: Props) {
             </div>
             <Text className={styles.sourceText}>{`${ssrItem.source}`}</Text>
           </Card>
+          {/* 色違いのアイテム */}
+          <Card className={styles.subCard}>
+            <div className={styles.subCardTitleWithSwitch}>
+              <div className={styles.subCardTitleNorMargin}>
+                <AppstoreFilled className={styles.subCardTitleIcon}/>
+                <Title level={3}>色違いのアイテム</Title>
+              </div>
+              {/* 重複トグルスイッチ */}
+              <div style={{display: "flex"}}>
+                <Text className={styles.switchLabelText}>同じデザインをまとめて表示</Text>
+                <Tooltip title="同じデザインをまとめて表示">
+                  <SnippetsOutlined className={styles.switchLabelICon} />
+                </Tooltip>
+                <Switch checked={isUniq} onChange={() => switchIsUniq(isUniq)} />
+              </div>
+            </div>
+          </Card>
+          { variations.length > 0 && (
+            <div className={styles.subCard}>
+              <ItemCardList items={variations}/>
+            </div>
+          )}
         </div>
         {/* サイドバー */}
-        <div>
-          <Card className={styles.siderCardNoMargin}>
+        <div className={styles.siderContainer}>
+          <Card>
             <div className={styles.adDummy} />
           </Card>
           {/* シリーズアイテム */}
@@ -107,14 +150,14 @@ export default function ItemPage(props: Props) {
                 { !showAll ? (
                   [...Array(5)].map((_, i) =>
                     ssrItem.series[i] && (
-                      <List.Item className={styles.listItem}>
+                      <List.Item className={styles.listItem} key={i}>
                         <ItemInfoCard item={ssrItem.series[i]} compact isLink/>
                       </List.Item>
                     )
                   )
                 ) : (
-                  ssrItem.series.map((s_item) =>
-                    <List.Item className={styles.listItem}>
+                  ssrItem.series.map((s_item, i) =>
+                    <List.Item className={styles.listItem} key={i}>
                       <ItemInfoCard item={s_item} compact isLink/>
                     </List.Item>
                   )

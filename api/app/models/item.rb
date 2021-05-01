@@ -9,7 +9,19 @@ class Item < ApplicationRecord
       available: true,
     ).where.not(
       model_main_2: self.model_main_2,
-    ).order(patch: :desc, item_level: :desc)
+    ).order(patch: :desc, item_level: :desc, id: :asc)
+  end
+
+  # 重複なしのメインモデルが同じかつサブモデルが違うアイテム
+  def uniq_variations
+    items = Item.preload(:category).where(
+      category: category,
+      model_main_1: self.model_main_1,
+      available: true,
+    ).where.not(
+      model_main_2: self.model_main_2,
+    ).order(patch: :desc, item_level: :desc, id: :asc)
+    items.uniq {|item| [item.model_main_1, item.model_main_2]}
   end
 
   # メインモデルとサブモデルが同じのアイテム（自身を除く）
@@ -21,7 +33,7 @@ class Item < ApplicationRecord
       available: true,
     ).where.not(
       id: self.id
-    ).order(patch: :desc, item_level: :desc)
+    ).order(patch: :desc, item_level: :desc, id: :asc)
   end
 
   def self.fetch_from_api(category_id)

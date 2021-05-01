@@ -34,9 +34,20 @@
   }
 }
 
+.mainContainer {
+  max-width: 700px;
+}
+
 .imageCarousel {
   max-width: 600px;
   margin: auto;
+}
+
+.siderContainer {
+  margin: 0 0 0 24px;
+  @include mq(xl) {
+    margin: 24px 0 0 0;
+  }
 }
 
 .subCard {
@@ -56,6 +67,41 @@
   }
 }
 
+.subCardTitleNorMargin {
+  display: flex;
+  span {
+    font-size: 20px;
+    margin-right: 8px;
+    color: $primary-color;
+  }
+  h3 {
+    margin: 0;
+  }
+}
+
+.subCardTitleWithSwitch {
+  display: flex;
+  justify-content: space-between;
+}
+
+.switchLabelText {
+  margin-right: 10px;
+  display: block;
+  @include mq(sm) {
+    display: none;
+  }
+}
+
+.switchLabelICon {
+  margin-right: 10px;
+  font-size: 20px;
+  color: $primary-color;
+  display: none;
+  @include mq(sm) {
+    display: block;
+  }
+}
+
 .listItem {
   display: block;
 }
@@ -65,17 +111,7 @@
 }
 
 .siderCard {
-  margin: 24px 0 0 24px;
-  @include mq(xl) {
-    margin: 24px 0 0 0;
-  }
-}
-
-.siderCardNoMargin {
-  margin: 0 0 0 24px;
-  @include mq(xl) {
-    margin: 24px 0 0 0;
-  }
+  margin-top: 24px;
 }
 
 .showAllButton {

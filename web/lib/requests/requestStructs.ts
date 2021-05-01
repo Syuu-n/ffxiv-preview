@@ -32,6 +32,7 @@ export interface Item {
   source: string
   source_en: string
   variations?: ItemIndex[]
+  uniq_variations?: ItemIndex[]
   series?: ItemIndex[]
 }
 
