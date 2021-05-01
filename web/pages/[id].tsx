@@ -66,10 +66,10 @@ export default function ItemPage(props: Props) {
           {/* image */}
           <Card>
             <Carousel arrows {...settings} className={styles.imageCarousel}>
-              <Image src={`/ffxiv-preview-image/${ssrItem.id}/scale.png`} />
-              <Image src={`/ffxiv-preview-image/${ssrItem.id}/1.png`} />
-              <Image src={`/ffxiv-preview-image/${ssrItem.id}/2.png`} />
-              <Image src={`/ffxiv-preview-image/${ssrItem.id}/3.png`} />
+              <Image src={`/ffxiv-preview-image/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/scale.png`} />
+              <Image src={`/ffxiv-preview-image/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/1.png`} />
+              <Image src={`/ffxiv-preview-image/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/2.png`} />
+              <Image src={`/ffxiv-preview-image/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/3.png`} />
             </Carousel>
           </Card>
           {/* info */}
@@ -84,8 +84,8 @@ export default function ItemPage(props: Props) {
               <div className={styles.infoCardInner}>
                 {/* アイコン */}
                 <div className={styles.iconContainer}>
-                  <img src={`/ffxiv-preview-image/${ssrItem.id}/icon.png`} className={styles.icon}/>
-                  <img src={`/ffxiv-preview-image/common/icon_cover.png`} className={styles.iconCover} />
+                  <img src={`/ffxiv-preview-image/icons/${ssrItem.id}.png`} className={styles.icon}/>
+                  <img src={`/ffxiv-preview-image/commons/icon_cover.png`} className={styles.iconCover} />
                 </div>
                 <div className={styles.infoContainer}>
                   {/* アイテム名 */}

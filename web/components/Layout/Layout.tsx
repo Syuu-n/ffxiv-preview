@@ -80,7 +80,7 @@ export default function Layout (props: {
           <Menu theme="dark" mode="inline" defaultSelectedKeys={[menuSelected ? menuSelected : "home"]}>
             <Menu.Item
               key="home"
-              icon={<img src="/ffxiv-preview-image/icons/home_icon.png" />}
+              icon={<img src="/ffxiv-preview-image/commons/home_icon.png" />}
               className={styles.menuIcon}
               onClick={() => router.push("/")}
             >
@@ -88,7 +88,7 @@ export default function Layout (props: {
             </Menu.Item>
             <Menu.Item
               key="earrings"
-              icon={<img src="/ffxiv-preview-image/icons/earring_icon.png" />}
+              icon={<img src="/ffxiv-preview-image/commons/earring_icon.png" />}
               className={styles.menuIcon}
               onClick={() => router.push("/earrings")}
             >
