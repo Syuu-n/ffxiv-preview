@@ -6,6 +6,7 @@ class Item < ApplicationRecord
     items = Item.where(
       category: category,
       model_main_1: self.model_main_1,
+      available: true,
     ).where.not(
       model_main_2: self.model_main_2,
     )

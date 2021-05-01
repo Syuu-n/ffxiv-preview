@@ -19,7 +19,12 @@ module V1
 
     def setup_item
       @item = Item.find_by(id: params[:id])
+      
       unless @item
+        render json: { code: 'item_not_found' }, status: :not_found and return
+      end
+
+      unless @item.available
         render json: { code: 'item_not_found' }, status: :not_found and return
       end
     end
