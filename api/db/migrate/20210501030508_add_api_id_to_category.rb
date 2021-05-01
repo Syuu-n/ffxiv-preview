@@ -1,0 +1,5 @@
+class AddApiIdToCategory < ActiveRecord::Migration[6.0]
+  def change
+    add_column :categories, :api_id, :integer
+  end
+end

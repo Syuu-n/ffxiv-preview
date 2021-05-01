@@ -5,7 +5,7 @@ module V1
 
     # GET /api/v1/items
     def index
-      items = Item.preload(:category).order(patch: :desc, item_level: :desc).all
+      items = Item.preload(:category).order(patch: :desc, item_level: :desc).where(available: true)
 
       render json: items, status: :ok
     end

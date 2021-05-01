@@ -10,28 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_30_090653) do
+ActiveRecord::Schema.define(version: 2021_05_01_032023) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "name_en"
-  end
-
-  create_table "earrings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
-    t.string "name_en"
     t.integer "api_id"
-    t.string "lodestone_id"
-    t.integer "level"
-    t.integer "item_level"
-    t.string "jobs"
-    t.string "jobs_en"
-    t.string "patch"
-    t.boolean "is_untradable"
-    t.string "model"
-    t.boolean "available", default: true
-    t.integer "item_id"
-    t.text "icon"
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -43,8 +27,14 @@ ActiveRecord::Schema.define(version: 2021_04_30_090653) do
     t.string "jobs_en"
     t.string "patch"
     t.boolean "is_untradable"
+    t.boolean "available", default: true
     t.bigint "category_id"
-    t.string "model"
+    t.string "lodestone_id"
+    t.string "api_id"
+    t.integer "model_main_1"
+    t.integer "model_main_2"
+    t.integer "model_main_3"
+    t.integer "model_main_4"
     t.text "source"
     t.text "source_en"
     t.text "img_1"
