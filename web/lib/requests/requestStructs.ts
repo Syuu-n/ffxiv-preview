@@ -1,3 +1,17 @@
+export interface ItemIndex {
+  id: number
+  name: string
+  name_en: string
+  level: number
+  item_level: number
+  jobs: string
+  jobs_en: string
+  patch: string
+  category: Category
+  model_main_1: number
+  model_main_2: number
+}
+
 export interface Item {
   id: number
   name: string
@@ -16,6 +30,8 @@ export interface Item {
   model_main_4: number
   source: string
   source_en: string
+  variations?: ItemIndex
+  series?: ItemIndex
 }
 
 export interface Category {

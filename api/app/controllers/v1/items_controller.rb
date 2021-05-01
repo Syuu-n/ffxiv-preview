@@ -7,7 +7,7 @@ module V1
     def index
       items = Item.preload(:category).order(patch: :desc, item_level: :desc).where(available: true)
 
-      render json: items, status: :ok
+      render json: items, status: :ok, each_serializer: ItemIndexSerializer
     end
 
     # GET /api/v1/items/:id
@@ -19,7 +19,7 @@ module V1
 
     def setup_item
       @item = Item.find_by(id: params[:id])
-      
+
       unless @item
         render json: { code: 'item_not_found' }, status: :not_found and return
       end

@@ -1,9 +1,9 @@
 import ItemCard from '../../components/ItemCard/itemCard'
-import { Item } from '../../lib/requests/requestStructs'
+import { Item, ItemIndex } from '../../lib/requests/requestStructs'
 import styles from '../../styles/components/itemCardList.module.scss'
 
 interface Props {
-  items: Item[]
+  items: ItemIndex[]
 }
 
 export default function ItemCardList(props: Props) {
@@ -11,7 +11,7 @@ export default function ItemCardList(props: Props) {
 
   return(
     <div className={styles.itemsContainer}>
-      { items.map((item) =>
+      { items.map((item: Item) =>
         <ItemCard item={item} key={item.id} />
       )}
     </div>

@@ -9,7 +9,17 @@ class Item < ApplicationRecord
       available: true,
     ).where.not(
       model_main_2: self.model_main_2,
-    )
+    ).order(patch: :desc, item_level: :desc)
+  end
+
+  # メインモデルとサブモデルが同じのアイテム
+  def series
+    items = Item.where(
+      category: category,
+      model_main_1: self.model_main_1,
+      model_main_2: self.model_main_2,
+      available: true,
+    ).order(patch: :desc, item_level: :desc)
   end
 
   def self.fetch_from_api(category_id)
