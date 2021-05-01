@@ -25,7 +25,7 @@ export default function ItemInfoCard(props: Props) {
       placement="end"
       color={patchColors[`${parseInt(item.patch)}`]}
     >
-      <Card hoverable={isLink}>
+      <Card hoverable={isLink} className={isLink && styles.cardHover}>
         {/* SP 用タイトル */}
         { compact ? (
           <Title level={4} className={styles.itemTitleSpCompact}>{item.name}</Title>
