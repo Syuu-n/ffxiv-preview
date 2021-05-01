@@ -11,6 +11,17 @@ module V1
       render json: items, status: :ok, each_serializer: ItemIndexSerializer
     end
 
+    # GET /api/v1/items/ids
+    def get_ids
+      item_ids = Item.all.where(available: true).map do|item|
+        {
+          params: { id: item.id.to_s }
+        }
+      end
+
+      render json: item_ids, status: :ok
+    end
+
     # GET /api/v1/items/:id
     def show
       render json: @item, status: :ok

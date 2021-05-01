@@ -183,15 +183,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async() => {
-  const itemsRes = await fetch(`${SSR_BASE_URL}/v1/items`, { method: "GET" })
-  const items: ItemIndex[] = await itemsRes.json()
-  const paths = await items.map(
-    (item) => {
-      return {
-        params: { id: item.id.toString() }
-      }
-    }
-  )
+  const itemsRes = await fetch(`${SSR_BASE_URL}/v1/items/ids`, { method: "GET" })
+  const paths: string[] = await itemsRes.json()
 
   return {
     paths,
