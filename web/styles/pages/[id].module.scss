@@ -39,86 +39,11 @@
   margin: auto;
 }
 
-.infoCardContainer {
+.subCard {
   margin-top: 24px;
 }
 
-.itemTitleSp {
-  margin: 10px 0;
-  display: none;
-  @include mq(sm) {
-    display: block;
-  }
-}
-
-.itemTitle {
-  display: block;
-  @include mq(sm) {
-    display: none;
-  }
-}
-
-.infoCardInner {
-  display: flex;
-  align-items: center;
-}
-
-.iconContainer {
-  position: relative;
-  height: 152px;
-  width: 152px;
-  @include mq(sm) {
-    height: 80px;
-    width: 80px;
-  }
-}
-
-.icon {
-  position: absolute;
-  top: 6px;
-  left: 12px;
-  @include mq(sm) {
-    height: 68px;
-    width: 68px;
-    top: 3px;
-    left: 6px;
-  }
-}
-
-.iconCover {
-  height: 152px;
-  width: 152px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  @include mq(sm) {
-    height: 80px;
-    width: 80px;
-  }
-}
-
-.infoContainer {
-  display: flex;
-  flex-direction: column;
-  margin: 0 24px;
-}
-
-.baseInfoContainer {
-  display: flex;
-  flex-direction: column;
-  :first-child {
-    margin-bottom: 10px;
-  }
-  :last-child {
-    margin-bottom: 10px;
-  }
-}
-
-.howToGetContainer {
-  margin-top: 24px;
-}
-
-.howToGetTitleContainer {
+.subCardTitle {
   display: flex;
   margin-bottom: 16px;
   span {
@@ -131,20 +56,35 @@
   }
 }
 
+.listItem {
+  display: block;
+}
+
 .sourceText {
   margin-left: 30px;
 }
 
-.sider {
+.siderCard {
+  margin: 24px 0 0 24px;
+  @include mq(xl) {
+    margin: 24px 0 0 0;
+  }
+}
+
+.siderCardNoMargin {
   margin: 0 0 0 24px;
   @include mq(xl) {
     margin: 24px 0 0 0;
   }
 }
 
+.showAllButton {
+  text-align: center;
+}
+
 .adDummy {
-  width: 300px;
-  height: 600px;
+  width: 336px;
+  height: 280px;
   background: #999999;
 }
 

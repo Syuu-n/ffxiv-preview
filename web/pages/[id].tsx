@@ -1,10 +1,12 @@
 import { GetStaticPaths, GetStaticProps } from "next"
 import { SSR_BASE_URL } from '../lib/config/config'
-import { Item } from '../lib/requests/requestStructs'
+import { Item, ItemIndex } from '../lib/requests/requestStructs'
 import Layout from '../components/Layout/layout'
-import { Typography, Carousel, Image, Card, Badge } from 'antd'
+import { Typography, Carousel, Image, Card, List, Button } from 'antd'
 import { LeftOutlined, RightOutlined, AppstoreFilled } from '@ant-design/icons'
 import styles from '../styles/pages/[id].module.scss'
+import ItemInfoCard from '../components/ItemInfoCard/itemInfoCard'
+import { useState } from "react"
 
 interface Props {
   ssrItem: Item
@@ -13,12 +15,16 @@ interface Props {
 export default function ItemPage(props: Props) {
   const { ssrItem } = props
   const { Title, Text } = Typography
-  const patchColors = {
-    2: "pink",
-    3: "blue",
-    4: "red",
-    5: "purple"
-  }
+  const [showAll, setShowAll] = useState(false)
+
+  const loadMore =
+    !showAll ? (
+      ssrItem.series.length > 5 && (
+        <div className={styles.showAllButton}>
+          <Button onClick={() => setShowAll(true)}>すべて表示</Button>
+        </div>
+      )
+    ) : null
 
   // カルーセルの左右矢印
   const NextArrow = props => {
@@ -63,7 +69,7 @@ export default function ItemPage(props: Props) {
       </div>
       <div className={styles.contentWrapper}>
         <div>
-          {/* image */}
+          {/* 画像 */}
           <Card>
             <Carousel arrows {...settings} className={styles.imageCarousel}>
               <Image src={`/ffxiv-preview-image/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/scale.png`} />
@@ -72,54 +78,51 @@ export default function ItemPage(props: Props) {
               <Image src={`/ffxiv-preview-image/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/3.png`} />
             </Carousel>
           </Card>
-          {/* info */}
-          <Badge.Ribbon
-            text={`パッチ ${ssrItem.patch}`}
-            placement="end"
-            color={patchColors[`${parseInt(ssrItem.patch)}`]}
-          >
-            <Card className={styles.infoCardContainer}>
-              {/* SP 用タイトル */}
-              <Title level={2} className={styles.itemTitleSp}>{ssrItem.name}</Title>
-              <div className={styles.infoCardInner}>
-                {/* アイコン */}
-                <div className={styles.iconContainer}>
-                  <img src={`/ffxiv-preview-image/icons/${ssrItem.id}.png`} className={styles.icon}/>
-                  <img src={`/ffxiv-preview-image/commons/icon_cover.png`} className={styles.iconCover} />
-                </div>
-                <div className={styles.infoContainer}>
-                  {/* アイテム名 */}
-                  <Title level={2} className={styles.itemTitle}>{ssrItem.name}</Title>
-                  {/* 基本情報 */}
-                  <div className={styles.baseInfoContainer}>
-                    <Text keyboard>{`ITEM LEVEL ${ssrItem.item_level}`}</Text>
-                    <div>
-                      <Text>クラス：</Text>
-                      <Text type="success">{ssrItem.jobs}</Text>
-                    </div>
-                    <div>
-                      <Text>装備レベル：</Text>
-                      <Text type="success">{ssrItem.level}</Text>
-                      <Text>〜</Text>
-                    </div>
-                  </div>
-                  {/* マーケット */}
-                  <Text type={ssrItem.is_untradable ? "danger" : "success"}>{`マーケット取引${ssrItem.is_untradable ? "不可" : "可"}`}</Text>
-                </div>
-              </div>
-            </Card>
-          </Badge.Ribbon>
-          <Card className={styles.howToGetContainer}>
-            <div className={styles.howToGetTitleContainer}>
+          {/* アイテム情報 */}
+          <div className={styles.subCard}>
+            <ItemInfoCard item={ssrItem}/>
+          </div>
+          {/* 入手方法 */}
+          <Card className={styles.subCard}>
+            <div className={styles.subCardTitle}>
               <AppstoreFilled />
               <Title level={3}>入手方法</Title>
             </div>
             <Text className={styles.sourceText}>{`${ssrItem.source}`}</Text>
           </Card>
         </div>
-        <Card className={styles.sider}>
-          <div className={styles.adDummy} />
-        </Card>
+        {/* サイドバー */}
+        <div>
+          <Card className={styles.siderCardNoMargin}>
+            <div className={styles.adDummy} />
+          </Card>
+          {/* シリーズアイテム */}
+          { ssrItem.series.length > 0 && (
+            <Card className={styles.siderCard}>
+              <div className={styles.subCardTitle}>
+                <AppstoreFilled />
+                <Title level={3}>シリーズ</Title>
+              </div>
+              <List loadMore={loadMore}>
+                { !showAll ? (
+                  [...Array(5)].map((_, i) =>
+                    ssrItem.series[i] && (
+                      <List.Item className={styles.listItem}>
+                        <ItemInfoCard item={ssrItem.series[i]} compact/>
+                      </List.Item>
+                    )
+                  )
+                ) : (
+                  ssrItem.series.map((s_item) =>
+                    <List.Item className={styles.listItem}>
+                      <ItemInfoCard item={s_item} compact/>
+                    </List.Item>
+                  )
+                )}
+              </List>
+            </Card>
+          )}
+        </div>
       </div>
     </Layout>
   )
@@ -138,7 +141,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 export const getStaticPaths: GetStaticPaths = async() => {
   const itemsRes = await fetch(`${SSR_BASE_URL}/v1/items`, { method: "GET" })
-  const items: Item[] = await itemsRes.json()
+  const items: ItemIndex[] = await itemsRes.json()
   const paths = await items.map(
     (item) => {
       return {

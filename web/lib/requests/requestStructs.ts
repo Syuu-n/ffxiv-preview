@@ -7,6 +7,7 @@ export interface ItemIndex {
   jobs: string
   jobs_en: string
   patch: string
+  is_untradable: boolean
   category: Category
   model_main_1: number
   model_main_2: number
@@ -30,8 +31,8 @@ export interface Item {
   model_main_4: number
   source: string
   source_en: string
-  variations?: ItemIndex
-  series?: ItemIndex
+  variations?: ItemIndex[]
+  series?: ItemIndex[]
 }
 
 export interface Category {

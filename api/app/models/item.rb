@@ -3,7 +3,7 @@ class Item < ApplicationRecord
 
   # メインモデルが同じかつサブモデルが違うアイテム
   def variations
-    items = Item.where(
+    items = Item.preload(:category).where(
       category: category,
       model_main_1: self.model_main_1,
       available: true,
@@ -12,13 +12,15 @@ class Item < ApplicationRecord
     ).order(patch: :desc, item_level: :desc)
   end
 
-  # メインモデルとサブモデルが同じのアイテム
+  # メインモデルとサブモデルが同じのアイテム（自身を除く）
   def series
-    items = Item.where(
+    items = Item.preload(:category).where(
       category: category,
       model_main_1: self.model_main_1,
       model_main_2: self.model_main_2,
       available: true,
+    ).where.not(
+      id: self.id
     ).order(patch: :desc, item_level: :desc)
   end
 
