@@ -36,6 +36,7 @@ class Item < ApplicationRecord
     ).order(patch: :desc, item_level: :desc, id: :asc)
   end
 
+  # API からデータ取得
   def self.fetch_from_api(category_id)
     # カテゴリ取得
     selected_category = Category.find_by(id: category_id)
@@ -78,6 +79,27 @@ class Item < ApplicationRecord
         end
       end
       puts "Fetched item count: #{fetch_count}"
+    end
+  end
+
+  # ロードストーン ID を取得
+  def self.fetch_lodestone_ids(category_id)
+    category = Category.find_by(id: category_id)
+      if category
+      # ロードストーン ID が設定されていないアイテムを取得
+      items = Item.where(lodestone_id: nil, category_id: category.id, available: true)
+      if items.size > 0
+        # ロードストーンから名前と ID のハッシュを取得
+        # {id: "c9ff175b4fe", name: "カーバンクル・トパーズイヤリング"}
+        items_hash = Scraping.lodestone_items(category.api_id)
+
+        items.each do |item|
+          lodestone_item = items_hash.find{|l_item| l_item[:name] == item.name}
+          if lodestone_item
+            item.update!(lodestone_id: lodestone_item[:id])
+          end
+        end
+      end
     end
   end
 end
