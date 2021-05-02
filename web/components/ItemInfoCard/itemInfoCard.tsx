@@ -24,7 +24,6 @@ export default function ItemInfoCard(props: Props) {
       text={`パッチ ${item.patch}`}
       placement="end"
       color={patchColors[`${parseInt(item.patch)}`]}
-      className={styles.cardHover}
     >
       <Card hoverable={isLink} className={isLink && styles.cardHover}>
         {/* SP 用タイトル */}
