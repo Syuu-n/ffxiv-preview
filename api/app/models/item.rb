@@ -36,6 +36,18 @@ class Item < ApplicationRecord
     ).order(patch: :desc, item_level: :desc, id: :asc)
   end
 
+  # 入手方法の配列
+  def source_array
+    splitted_source = source.split(",")
+    splitted_source.map{|ss| ss.include?("&&") ? ss.split("&&") : ss}
+  end
+
+  # 入手方法の配列（英語）
+  def source_array_en
+    splitted_source = source_en.split(",")
+    splitted_source.map{|ss| ss.include?("&&") ? ss.split("&&") : ss}
+  end
+
   # ロードストーン ID からメタデータを取得
   def fetch_meta_data_from_lodestone_id
     # 入手方法が設定されていない場合のみ取得する

@@ -28,8 +28,8 @@ export interface Item {
   model_main_2: number
   model_main_3: number
   model_main_4: number
-  source: string
-  source_en: string
+  source_array: string[][]
+  source_array_en: string[][]
   variations?: ItemIndex[]
   uniq_variations?: ItemIndex[]
   series?: ItemIndex[]
