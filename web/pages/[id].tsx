@@ -15,7 +15,7 @@ interface Props {
 
 export default function ItemPage(props: Props) {
   const { ssrItem } = props
-  const { Title, Text } = Typography
+  const { Title, Text, Paragraph } = Typography
   const [showAll, setShowAll] = useState(false)
   const [variations, setVariations] = useState(ssrItem.variations)
   const [isUniq, setIsUniq] = useState(false)
@@ -114,7 +114,7 @@ export default function ItemPage(props: Props) {
                 ssrItem.source_array.map((source) =>
                   // 入手方法がトレードの場合はさらに配列になる
                   typeof source === "string" ? (
-                    <Text key={source}>{source}</Text>
+                    <Paragraph key={source}>{source}</Paragraph>
                   ) : (
                     <div className={styles.sourceTextWrap}>
                       { source.map((s) =>
