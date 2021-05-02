@@ -36,6 +36,19 @@ class Item < ApplicationRecord
     ).order(patch: :desc, item_level: :desc, id: :asc)
   end
 
+  # ロードストーン ID からメタデータを取得
+  def fetch_meta_data_from_lodestone_id
+    # 入手方法が設定されていない場合のみ取得する
+    unless self.source
+      sources = Scraping.get_item_meta_data(self)
+      if sources
+        formatted_source_ja = sources[0].size > 0 ? sources[0].join(",") : ""
+        formatted_source_en = sources[1].size > 0 ? sources[1].join(",") : ""
+        self.update!(source: formatted_source_ja, source_en: formatted_source_en)
+      end
+    end
+  end
+
   # API からデータ取得
   def self.fetch_from_api(category_id)
     # カテゴリ取得
