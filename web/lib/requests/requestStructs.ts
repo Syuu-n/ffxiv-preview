@@ -24,7 +24,6 @@ export interface Item {
   patch: string
   is_untradable: boolean
   category: Category
-  lodestone_id: string
   model_main_1: number
   model_main_2: number
   model_main_3: number

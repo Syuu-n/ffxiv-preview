@@ -15,7 +15,7 @@ module V1
     def get_ids
       item_ids = Item.all.where(available: true).map do|item|
         {
-          params: { id: item.id.to_s }
+          params: { id: item.lodestone_id.to_s }
         }
       end
 
@@ -30,7 +30,7 @@ module V1
     private
 
     def setup_item
-      @item = Item.find_by(id: params[:id])
+      @item = Item.find_by(lodestone_id: params[:id])
 
       unless @item
         render json: { code: 'item_not_found' }, status: :not_found and return
