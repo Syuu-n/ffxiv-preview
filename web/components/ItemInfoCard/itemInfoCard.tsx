@@ -1,4 +1,4 @@
-import { Typography, Card, Badge } from 'antd'
+import { Typography, Card, Badge, Button } from 'antd'
 import { Item, ItemIndex } from '../../lib/requests/requestStructs'
 import styles from '../../styles/components/itemInfoCard.module.scss'
 import CustomLink from '../../components/CustomLink/customLink'
@@ -24,6 +24,7 @@ export default function ItemInfoCard(props: Props) {
       text={`パッチ ${item.patch}`}
       placement="end"
       color={patchColors[`${parseInt(item.patch)}`]}
+      className={styles.cardHover}
     >
       <Card hoverable={isLink} className={isLink && styles.cardHover}>
         {/* SP 用タイトル */}
@@ -86,6 +87,13 @@ export default function ItemInfoCard(props: Props) {
                 </div>
                 {/* マーケット */}
                 <Text type={item.is_untradable ? "danger" : "success"}>{`マーケット取引${item.is_untradable ? "不可" : "可"}`}</Text>
+                {/* リンク */}
+                <Button
+                  href={`https://jp.finalfantasyxiv.com/lodestone/playguide/db/item/${item.id}`}
+                  target="_blank"
+                >
+                  Lodestone
+                </Button>
               </div>
             </>
           ) }
