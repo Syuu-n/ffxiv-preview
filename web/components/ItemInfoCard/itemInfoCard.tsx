@@ -2,7 +2,8 @@ import { Typography, Card, Badge, Button } from 'antd'
 import { Item, ItemIndex } from '../../lib/requests/requestStructs'
 import styles from '../../styles/components/itemInfoCard.module.scss'
 import CustomLink from '../../components/CustomLink/customLink'
-import { get_patch_color } from '../../lib/patchColor'
+import { get_patch_color } from '../../lib/patchColor/patchColor'
+import { LODESTONE_ITEM_BASE_URL } from '../../lib/config/config'
 
 interface Props {
   item: Item | ItemIndex
@@ -82,12 +83,13 @@ export default function ItemInfoCard(props: Props) {
                 {/* マーケット */}
                 <Text type={item.is_untradable ? "danger" : "success"}>{`マーケット取引${item.is_untradable ? "不可" : "可"}`}</Text>
                 {/* リンク */}
-                <Button
-                  href={`https://jp.finalfantasyxiv.com/lodestone/playguide/db/item/${item.id}`}
+                <a
+                  href={`${LODESTONE_ITEM_BASE_URL}/${item.id}`}
                   target="_blank"
+                  rel="noreferrer noopener"
                 >
                   Lodestone
-                </Button>
+                </a>
               </div>
             </>
           ) }
