@@ -117,9 +117,9 @@ export default function ItemPage(props: Props) {
               <AppstoreFilled />
               <Title level={3}>入手方法</Title>
             </div>
-            <div  className={styles.sourceContainer}>
-              { ssrItem.source_array.length > 0 && (
-                ssrItem.source_array.map((source) =>
+            { ssrItem.source_array.length > 0 && (
+              <div  className={styles.sourceContainer}>
+               { ssrItem.source_array.map((source) =>
                   // 入手方法がトレードの場合はさらに配列になる
                   typeof source === "string" ? (
                     <Paragraph key={source}>{source}</Paragraph>
@@ -130,9 +130,9 @@ export default function ItemPage(props: Props) {
                       )}
                     </div>
                   )
-                )
-              )}
-            </div>
+                )}
+              </div>
+            )}
           </Card>
           {/* 色違いのアイテム */}
           <Card className={styles.subCard}>
