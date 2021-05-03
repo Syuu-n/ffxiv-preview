@@ -82,18 +82,25 @@ export default function ItemInfoCard(props: Props) {
                 </div>
                 {/* マーケット */}
                 <Text type={item.is_untradable ? "danger" : "success"}>{`マーケット取引${item.is_untradable ? "不可" : "可"}`}</Text>
-                {/* リンク */}
-                <a
-                  href={`${LODESTONE_ITEM_BASE_URL}/${item.id}`}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  Lodestone
-                </a>
               </div>
             </>
           ) }
         </div>
+        {/* リンク */}
+        { !compact && (
+          <div className={styles.linksContainer}>
+            {/* Lodestone */}
+            <Button
+              href={`${LODESTONE_ITEM_BASE_URL}/${item.id}`}
+              target="_blank"
+              rel="noreferrer noopener"
+              className={styles.lodestoneLink}
+              icon={<img src="/ffxiv-preview-image/commons/lodestone_icon.png" alt="lodestone-icon"/>}
+            >
+              <Text>Lodestone</Text>
+            </Button>
+          </div>
+        )}
       </Card>
     </Badge.Ribbon>
 

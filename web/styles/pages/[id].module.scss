@@ -14,6 +14,9 @@
   h1 {
     margin: 0;
     position: relative;
+    @include mq(xl) {
+      margin: 0 0 5px 0;
+    }
   }
   span {
     margin-left: 16px;
