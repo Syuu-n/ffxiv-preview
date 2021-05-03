@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next"
 import { SSR_BASE_URL } from '../lib/config/config'
-import { Item, ItemIndex } from '../lib/requests/requestStructs'
+import { Item } from '../lib/requests/requestStructs'
 import Layout from '../components/Layout/layout'
 import { Typography, Carousel, Image, Card, List, Button, Switch, Tooltip } from 'antd'
 import { LeftOutlined, RightOutlined, AppstoreFilled, SnippetsOutlined } from '@ant-design/icons'
@@ -8,6 +8,7 @@ import styles from '../styles/pages/[id].module.scss'
 import ItemInfoCard from '../components/ItemInfoCard/itemInfoCard'
 import { useEffect, useState } from "react"
 import ItemCardList from '../components/ItemCardList/itemCardList'
+import { useRouter } from 'next/router'
 
 interface Props {
   ssrItem: Item
@@ -16,6 +17,7 @@ interface Props {
 export default function ItemPage(props: Props) {
   const { ssrItem } = props
   const { Title, Text, Paragraph } = Typography
+  const router = useRouter()
   const [showAll, setShowAll] = useState(false)
   const [variations, setVariations] = useState(ssrItem.variations)
   const [isUniq, setIsUniq] = useState(false)
@@ -70,6 +72,12 @@ export default function ItemPage(props: Props) {
   useEffect(() => {
     setVariations(isUniq ? ssrItem.uniq_variations : ssrItem.variations)
   }, [isUniq])
+
+  useEffect(() => {
+    // ページ切替時に色違いアイテムリストとすべて表示のフラグを更新する
+    setVariations(isUniq ? ssrItem.uniq_variations : ssrItem.variations)
+    setShowAll(false)
+  }, [router.asPath])
 
   return (
     <Layout
