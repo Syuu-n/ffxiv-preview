@@ -18,7 +18,8 @@ export default function ItemCard(props: Props) {
           cover={
             <img
               alt="item-thumbnail"
-              src={`/ffxiv-preview-image/models/${item.model_main_1}/${item.model_main_2}/thumbnail.png`}
+              src={`/ffxiv-preview-image/models/${item.model_main_1}/${item.model_main_2}/400.png`}
+              className={styles.itemThumbnail}
             />
           }
           className={styles.card}

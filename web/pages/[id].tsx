@@ -101,14 +101,14 @@ export default function ItemPage(props: Props) {
       <div className={styles.contentWrapper}>
         <div className={styles.mainContainer}>
           {/* 画像 */}
-          <Card>
+          <div className={styles.carouselWrap}>
             <Carousel arrows {...settings} className={styles.imageCarousel}>
-              <Image src={`/ffxiv-preview-image/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/scale.png`} />
-              <Image src={`/ffxiv-preview-image/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/1.png`} />
-              <Image src={`/ffxiv-preview-image/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/2.png`} />
-              <Image src={`/ffxiv-preview-image/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/3.png`} />
+              <Image src={`/ffxiv-preview-image/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/600.png`} />
+              <Image src={`/ffxiv-preview-image/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/800_side.png`} />
+              <Image src={`/ffxiv-preview-image/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/800.png`} />
+              <Image src={`/ffxiv-preview-image/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/800_front.png`} />
             </Carousel>
-          </Card>
+          </div>
           {/* アイテム情報 */}
           <div className={styles.subCard}>
             <ItemInfoCard item={ssrItem}/>
