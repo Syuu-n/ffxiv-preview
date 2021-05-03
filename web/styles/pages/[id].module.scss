@@ -8,12 +8,18 @@
   display: flex;
   align-items: center;
   margin-bottom: 24px;
+  @include mq(xl) {
+    display: block;
+  }
   h1 {
     margin: 0;
     position: relative;
   }
   span {
     margin-left: 16px;
+    @include mq(xl) {
+      margin-left: 0;
+    }
   }
 }
 
