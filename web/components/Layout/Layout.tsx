@@ -75,6 +75,7 @@ export default function Layout (props: {
           breakpoint="lg"
           collapsedWidth="0"
           className={styles.sider}
+          zeroWidthTriggerStyle={{ top: "10px"}}
         >
           <div className={styles.logo} />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={[menuSelected ? menuSelected : "home"]}>

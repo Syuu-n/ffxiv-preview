@@ -35,7 +35,10 @@
 }
 
 .mainContainer {
-  max-width: 700px;
+  max-width: 70%;
+  @include mq(xl) {
+    max-width: 100%;
+  }
 }
 
 .imageCarousel {

@@ -1,10 +1,14 @@
 @import '../variables.scss';
 
 .sider {
-  height: 100vh;
+  height: 101vh;
   position: fixed;
   left: 0;
   z-index: 100;
+}
+
+.zeroWidthTrigger {
+  top: 10px;
 }
 
 .menuIcon {
