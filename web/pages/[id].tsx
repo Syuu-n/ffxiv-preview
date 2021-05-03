@@ -36,6 +36,7 @@ export default function ItemPage(props: Props) {
     const { onClick } = props
     return (
       <div onClick={onClick} className={styles.nextArrowWrap}>
+        <div className={styles.nextArrowMask} />
         <RightOutlined />
       </div>
     )
@@ -45,6 +46,7 @@ export default function ItemPage(props: Props) {
     const { onClick } = props
     return (
       <div onClick={onClick} className={styles.prevArrowWrap}>
+        <div className={styles.prevArrowMask} />
         <LeftOutlined />
       </div>
     )

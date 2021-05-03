@@ -7,7 +7,7 @@
 .titleContainer {
   display: flex;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   @include mq(xl) {
     display: block;
   }
@@ -49,6 +49,10 @@
   @include mq(xl) {
     width: 100%;
   }
+}
+
+.carouselWrap {
+  background-color: #252525;
 }
 
 .imageCarousel {
@@ -156,11 +160,10 @@
   width: 15%;
   z-index: 50;
   cursor: pointer;
-  opacity: .15;
-  background: linear-gradient(to left, #000, transparent);
-  transition: opacity .25s;
   &:hover {
-    opacity: .5;
+    svg {
+      opacity: .5;
+    }
   }
   span {
     position: absolute;
@@ -169,7 +172,20 @@
       color: #ffffff;
       height: 25px;
       width: 25px;
+      opacity: .25;
+      transition: opacity .25s;
     }
+  }
+}
+
+.nextArrowMask {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to left, #000, transparent);
+  opacity: 0;
+  transition: opacity .25s;
+  &:hover {
+    opacity: .25;
   }
 }
 
@@ -183,11 +199,10 @@
   width: 15%;
   z-index: 50;
   cursor: pointer;
-  opacity: .15;
-  background: linear-gradient(to right, #000, transparent);
-  transition: opacity .25s;
   &:hover {
-    opacity: .5;
+    svg {
+      opacity: .5;
+    }
   }
   span {
     position: absolute;
@@ -196,6 +211,19 @@
       color: #ffffff;
       height: 25px;
       width: 25px;
+      opacity: .25;
+      transition: opacity .25s;
     }
+  }
+}
+
+.prevArrowMask {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to right, #000, transparent);
+  opacity: 0;
+  transition: opacity .25s;
+  &:hover {
+    opacity: .25;
   }
 }
