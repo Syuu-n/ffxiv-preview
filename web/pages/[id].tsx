@@ -104,9 +104,8 @@ export default function ItemPage(props: Props) {
           <div className={styles.carouselWrap}>
             <Carousel arrows {...settings} className={styles.imageCarousel}>
               <Image src={`/ffxiv-preview-image/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/600.png`} />
-              <Image src={`/ffxiv-preview-image/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/800_side.png`} />
               <Image src={`/ffxiv-preview-image/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/800.png`} />
-              <Image src={`/ffxiv-preview-image/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/800_front.png`} />
+              <Image src={`/ffxiv-preview-image/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/800_2.png`} />
             </Carousel>
           </div>
           {/* アイテム情報 */}
