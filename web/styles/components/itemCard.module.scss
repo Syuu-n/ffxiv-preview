@@ -1,3 +1,5 @@
+@import '../variables.scss';
+
 .card {
   max-width: 400px;
   margin: auto;
@@ -7,6 +9,37 @@
   }
 }
 
+.cardCoverWrap {
+  position: relative;
+}
+
 .itemThumbnail {
+  width: 100%;
   filter: brightness(110%);
+}
+
+.cardMeta {
+  display: flex;
+  flex-direction: column;
+}
+
+.itemLevelBadge {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  sup {
+    background-color: $primary-color;
+    display: inline-block !important;
+    margin-bottom: 0 !important;
+    font-weight: 500;
+    box-shadow: none;
+  }
+}
+
+.itemTitle {
+  font-weight: 500 !important;
+}
+
+.itemJobs {
+  font-size: 12px;
 }
