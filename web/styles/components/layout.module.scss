@@ -60,9 +60,13 @@
 
 .BackToTopWrap {
   right: 50px;
+  transition: .25s ease;
   @include mq(lg) {
     right: 20px;
     bottom: 20px;
+  }
+  &:hover {
+    filter: brightness(120%);
   }
 }
 
