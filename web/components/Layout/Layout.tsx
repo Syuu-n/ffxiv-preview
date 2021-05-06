@@ -3,8 +3,8 @@ import styles from '../../styles/components/layout.module.scss'
 import {
   SITE_FULL_NAME, SITE_NAME, SITE_DOMAIN, SITE_DESCRIPTION,
 } from '../../lib/config/config'
-import { Layout as AntLayout, Menu, Breadcrumb, Divider } from "antd"
-import { HomeOutlined } from '@ant-design/icons'
+import { Layout as AntLayout, Menu, Breadcrumb, Divider, BackTop } from "antd"
+import { HomeOutlined, DoubleLeftOutlined } from '@ant-design/icons'
 import { useRouter } from 'next/router'
 import CustomHeader from '../../components/Header/header'
 
@@ -133,6 +133,10 @@ export default function Layout (props: {
             (C) SQUARE ENIX CO., LTD. All Rights Reserved. / 
             &copy; 2021 {SITE_FULL_NAME}
           </Footer>
+          {/* BackToTop */}
+          <BackTop className={styles.BackToTopWrap}>
+            <DoubleLeftOutlined className={styles.BackToTop} />
+          </BackTop>
         </AntLayout>
       </AntLayout>
     </>
