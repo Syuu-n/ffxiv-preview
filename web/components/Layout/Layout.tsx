@@ -7,6 +7,7 @@ import { Layout as AntLayout, Menu, Breadcrumb, Divider, BackTop } from "antd"
 import { HomeOutlined, DoubleLeftOutlined } from '@ant-design/icons'
 import { useRouter } from 'next/router'
 import CustomHeader from '../../components/Header/header'
+import { IMAGE_BASE_URL } from '../../lib/config/config'
 
 type MenuList = "home" | "earrings"
 
@@ -81,7 +82,7 @@ export default function Layout (props: {
           <Menu theme="dark" mode="inline" defaultSelectedKeys={[menuSelected ? menuSelected : "home"]}>
             <Menu.Item
               key="home"
-              icon={<img src="/ffxiv-preview-image/commons/home_icon.png" />}
+              icon={<img src={`${IMAGE_BASE_URL}/commons/home_icon.png`} />}
               className={styles.menuIcon}
               onClick={() => router.push("/")}
             >
@@ -89,7 +90,7 @@ export default function Layout (props: {
             </Menu.Item>
             <Menu.Item
               key="earrings"
-              icon={<img src="/ffxiv-preview-image/commons/earring_icon.png" />}
+              icon={<img src={`${IMAGE_BASE_URL}/commons/earring_icon.png`} />}
               className={styles.menuIcon}
               onClick={() => router.push("/earrings")}
             >

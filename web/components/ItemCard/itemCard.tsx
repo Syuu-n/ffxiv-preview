@@ -2,6 +2,7 @@ import { Card, Badge, Typography } from 'antd'
 import { Item } from '../../lib/requests/requestStructs'
 import styles from '../../styles/components/itemCard.module.scss'
 import CustomLink from '../../components/CustomLink/customLink'
+import { IMAGE_BASE_URL } from '../../lib/config/config'
 
 interface Props {
   item: Item
@@ -20,7 +21,7 @@ export default function ItemCard(props: Props) {
             <div className={styles.cardCoverWrap}>
               <img
                 alt="item-thumbnail"
-                src={`/ffxiv-preview-image/models/${item.model_main_1}/${item.model_main_2}/400.png`}
+                src={`${IMAGE_BASE_URL}/models/${item.model_main_1}/${item.model_main_2}/400.png`}
                 className={styles.itemThumbnail}
               />
               <Badge
