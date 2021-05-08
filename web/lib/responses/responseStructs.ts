@@ -1,4 +1,6 @@
 export interface ItemIndex {
+  items: Item[]
+  meta: Meta
   id: number
   name: string
   name_en: string
@@ -30,9 +32,17 @@ export interface Item {
   model_main_4: number
   source_array: string[][]
   source_array_en: string[][]
-  variations?: ItemIndex[]
-  uniq_variations?: ItemIndex[]
-  series?: ItemIndex[]
+  variations?: Item[]
+  uniq_variations?: Item[]
+  series?: Item[]
+}
+
+export interface Meta {
+  current_page: number
+  next_page: number
+  prev_page: number
+  total_pages: number
+  total_count: number
 }
 
 export interface Category {

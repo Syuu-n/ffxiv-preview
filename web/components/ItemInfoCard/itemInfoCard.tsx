@@ -1,5 +1,5 @@
 import { Typography, Card, Badge, Button } from 'antd'
-import { Item, ItemIndex } from '../../lib/requests/requestStructs'
+import { Item } from '../../lib/responses/responseStructs'
 import styles from '../../styles/components/itemInfoCard.module.scss'
 import CustomLink from '../../components/CustomLink/customLink'
 import { get_patch_color } from '../../lib/patchColor/patchColor'
@@ -7,7 +7,7 @@ import { LODESTONE_ITEM_BASE_URL } from '../../lib/config/config'
 import { IMAGE_BASE_URL } from '../../lib/config/config'
 
 interface Props {
-  item: Item | ItemIndex
+  item: Item
   compact?: boolean
   isLink?: boolean
 }

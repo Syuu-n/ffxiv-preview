@@ -1,5 +1,5 @@
 import { Card, Badge, Typography } from 'antd'
-import { Item } from '../../lib/requests/requestStructs'
+import { Item } from '../../lib/responses/responseStructs'
 import styles from '../../styles/components/itemCard.module.scss'
 import CustomLink from '../../components/CustomLink/customLink'
 import { IMAGE_BASE_URL } from '../../lib/config/config'

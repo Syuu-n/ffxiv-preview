@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next"
 import { SSR_BASE_URL } from '../lib/config/config'
-import { Item } from '../lib/requests/requestStructs'
+import { Item } from '../lib/responses/responseStructs'
 import Layout from '../components/Layout/layout'
 import { Typography, Carousel, Image, Card, List, Button, Switch, Tooltip } from 'antd'
 import { LeftOutlined, RightOutlined, AppstoreFilled, SnippetsOutlined } from '@ant-design/icons'
@@ -88,7 +88,7 @@ export default function ItemPage(props: Props) {
       menuSelected="earrings"
       breadcrumbs={[
         { key: "", name: "ホーム" },
-        { key: "earrings", name: "耳飾り"},
+        { key: "earrings/1", name: "耳飾り"},
         { key: ssrItem.id, name: ssrItem.name }
       ]}
     >

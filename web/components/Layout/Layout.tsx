@@ -92,7 +92,7 @@ export default function Layout (props: {
               key="earrings"
               icon={<img src={`${IMAGE_BASE_URL}/commons/earring_icon.png`} />}
               className={styles.menuIcon}
-              onClick={() => router.push("/earrings")}
+              onClick={() => router.push("/earrings/1")}
             >
               耳飾り
             </Menu.Item>
