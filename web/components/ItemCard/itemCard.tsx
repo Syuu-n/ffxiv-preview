@@ -1,7 +1,8 @@
-import { Card } from 'antd'
-import { Item } from '../../lib/requests/requestStructs'
+import { Card, Badge, Typography } from 'antd'
+import { Item } from '../../lib/responses/responseStructs'
 import styles from '../../styles/components/itemCard.module.scss'
 import CustomLink from '../../components/CustomLink/customLink'
+import { IMAGE_BASE_URL } from '../../lib/config/config'
 
 interface Props {
   item: Item
@@ -9,6 +10,7 @@ interface Props {
 
 export default function ItemCard(props: Props) {
   const { item } = props
+  const { Title, Text } = Typography
 
   return(
     <CustomLink href={`/${item.id}`}>
@@ -16,18 +18,24 @@ export default function ItemCard(props: Props) {
         <Card
           hoverable
           cover={
-            <img
-              alt="item-thumbnail"
-              src={`/ffxiv-preview-image/models/${item.model_main_1}/${item.model_main_2}/400.png`}
-              className={styles.itemThumbnail}
-            />
+            <div className={styles.cardCoverWrap}>
+              <img
+                alt="item-thumbnail"
+                src={`${IMAGE_BASE_URL}/models/${item.model_main_1}/${item.model_main_2}/400.png`}
+                className={styles.itemThumbnail}
+              />
+              <Badge
+                count={`ITEM LEVEL ${item.item_level}`}
+                className={styles.itemLevelBadge}
+              />
+            </div>
           }
           className={styles.card}
         >
-          <Card.Meta
-            title={item.name}
-            description={item.jobs}
-          />
+          <div className={styles.cardMeta}>
+            <Title level={4} className={styles.itemTitle}>{item.name}</Title>
+            <Text type="secondary" className={styles.itemJobs}>{item.jobs}</Text>
+          </div>
         </Card>
       </a>
     </CustomLink>

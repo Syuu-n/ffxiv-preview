@@ -5,10 +5,12 @@ module V1
 
     # GET /api/v1/items
     def index
-      items = Item.preload(:category).order(patch: :desc, item_level: :desc, id: :asc)
-      .where(available: true)
+      items = Item.preload(:category).where(available: true)
+      .order(patch: :desc, item_level: :desc, id: :asc).page(index_params[:page] ||= 1)
+      # u_items = items.uniq {|item| [item.model_main_1, item.model_main_2]}
 
-      render json: items, status: :ok, each_serializer: ItemIndexSerializer
+      render json: items, status: :ok, adapter: :json, meta: pagination_dict(items),
+      each_serializer: ItemIndexSerializer
     end
 
     # GET /api/v1/items/ids
@@ -39,6 +41,10 @@ module V1
       unless @item.available
         render json: { code: 'item_not_found' }, status: :not_found and return
       end
+    end
+
+    def index_params
+      params.permit(:page)
     end
   end
 end

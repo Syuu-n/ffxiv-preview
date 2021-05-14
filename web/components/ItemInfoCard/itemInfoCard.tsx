@@ -1,12 +1,13 @@
 import { Typography, Card, Badge, Button } from 'antd'
-import { Item, ItemIndex } from '../../lib/requests/requestStructs'
+import { Item } from '../../lib/responses/responseStructs'
 import styles from '../../styles/components/itemInfoCard.module.scss'
 import CustomLink from '../../components/CustomLink/customLink'
 import { get_patch_color } from '../../lib/patchColor/patchColor'
 import { LODESTONE_ITEM_BASE_URL } from '../../lib/config/config'
+import { IMAGE_BASE_URL } from '../../lib/config/config'
 
 interface Props {
-  item: Item | ItemIndex
+  item: Item
   compact?: boolean
   isLink?: boolean
 }
@@ -21,7 +22,7 @@ export default function ItemInfoCard(props: Props) {
       placement="end"
       color={get_patch_color(item.patch)}
     >
-      <Card hoverable={isLink} className={isLink && styles.cardHover}>
+      <Card hoverable={isLink}>
         {/* SP 用タイトル */}
         { compact ? (
           <Title level={4} className={styles.itemTitleSpCompact}>{item.name}</Title>
@@ -34,8 +35,8 @@ export default function ItemInfoCard(props: Props) {
               {/* コンパクトスタイル */}
               <div className={styles.iconContainerCompact}>
                 {/* アイコン */}
-                <img src={`/ffxiv-preview-image/icons/${item.id}.png`} className={styles.iconCompact}/>
-                <img src={`/ffxiv-preview-image/commons/icon_cover.png`} className={styles.iconCoverCompact} />
+                <img src={`${IMAGE_BASE_URL}/icons/${item.id}.png`} className={styles.iconCompact}/>
+                <img src={`${IMAGE_BASE_URL}/commons/icon_cover.png`} className={styles.iconCoverCompact} />
               </div>
               <div className={styles.infoContainer}>
                 {/* アイテム名 */}
@@ -58,8 +59,8 @@ export default function ItemInfoCard(props: Props) {
               {/* 通常スタイル */}
               <div className={styles.iconContainer}>
                 {/* アイコン */}
-                <img src={`/ffxiv-preview-image/icons/${item.id}.png`} className={styles.icon}/>
-                <img src={`/ffxiv-preview-image/commons/icon_cover.png`} className={styles.iconCover} />
+                <img src={`${IMAGE_BASE_URL}/icons/${item.id}.png`} className={styles.icon}/>
+                <img src={`${IMAGE_BASE_URL}/commons/icon_cover.png`} className={styles.iconCover} />
               </div>
               <div className={styles.infoContainer}>
                 {/* アイテム名 */}
@@ -95,7 +96,7 @@ export default function ItemInfoCard(props: Props) {
               target="_blank"
               rel="noreferrer noopener"
               className={styles.lodestoneLink}
-              icon={<img src="/ffxiv-preview-image/commons/lodestone_icon.png" alt="lodestone-icon"/>}
+              icon={<img src={`${IMAGE_BASE_URL}/commons/lodestone_icon.png`} alt="lodestone-icon"/>}
             >
               <Text>Lodestone</Text>
             </Button>

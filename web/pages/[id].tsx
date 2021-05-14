@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next"
 import { SSR_BASE_URL } from '../lib/config/config'
-import { Item } from '../lib/requests/requestStructs'
+import { Item } from '../lib/responses/responseStructs'
 import Layout from '../components/Layout/layout'
 import { Typography, Carousel, Image, Card, List, Button, Switch, Tooltip } from 'antd'
 import { LeftOutlined, RightOutlined, AppstoreFilled, SnippetsOutlined } from '@ant-design/icons'
@@ -9,6 +9,7 @@ import ItemInfoCard from '../components/ItemInfoCard/itemInfoCard'
 import { useEffect, useState } from "react"
 import ItemCardList from '../components/ItemCardList/itemCardList'
 import { useRouter } from 'next/router'
+import { IMAGE_BASE_URL } from '../lib/config/config'
 
 interface Props {
   ssrItem: Item
@@ -87,7 +88,7 @@ export default function ItemPage(props: Props) {
       menuSelected="earrings"
       breadcrumbs={[
         { key: "", name: "ホーム" },
-        { key: "earrings", name: "耳飾り"},
+        { key: "earrings/1", name: "耳飾り"},
         { key: ssrItem.id, name: ssrItem.name }
       ]}
     >
@@ -103,9 +104,9 @@ export default function ItemPage(props: Props) {
           {/* 画像 */}
           <div className={styles.carouselWrap}>
             <Carousel arrows {...settings} className={styles.imageCarousel}>
-              <Image src={`/ffxiv-preview-image/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/600.png`} />
-              <Image src={`/ffxiv-preview-image/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/800.png`} />
-              <Image src={`/ffxiv-preview-image/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/800_2.png`} />
+              <Image src={`${IMAGE_BASE_URL}/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/600.png`} />
+              <Image src={`${IMAGE_BASE_URL}/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/800.png`} />
+              <Image src={`${IMAGE_BASE_URL}/models/${ssrItem.model_main_1}/${ssrItem.model_main_2}/800_2.png`} />
             </Carousel>
           </div>
           {/* アイテム情報 */}
